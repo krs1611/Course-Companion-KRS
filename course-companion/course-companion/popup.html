@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="popup.css"></head>
+<body>
+<header><h1>Course Companion</h1></header>
+<nav role="tablist">
+  <button data-tab="player" aria-selected="true">Player</button>
+  <button data-tab="study" aria-selected="false">Study</button>
+  <button data-tab="progress" aria-selected="false">Progress</button>
+  <button data-tab="settings" aria-selected="false">Settings</button>
+</nav>
+
+<section id="player">
+  <p id="pstatus" class="muted">Looking for a video…</p>
+  <div class="speedrow"><button id="slower" aria-label="Slower">−</button><output id="speedval">1×</output><button id="faster" aria-label="Faster">+</button></div>
+  <div class="chips" id="presets"></div>
+  <div class="row"><button id="back">Back <span class="sk">10</span>s</button><button id="fwd">Forward <span class="sk">10</span>s</button></div>
+  <p class="muted small">Shortcuts on the video page: Alt+. faster, Alt+, slower, Alt+← / Alt+→ skip.</p>
+</section>
+
+<section id="study" hidden>
+  <div class="row"><button id="grab">Grab captions</button>
+    <select id="mode"><option value="summary">Summary</option><option value="notes">Study notes</option><option value="flashcards">Flashcards</option><option value="quiz">Practice quiz</option></select></div>
+  <textarea id="text" placeholder="Captions appear here, or paste a lecture transcript."></textarea>
+  <button id="gen" class="primary">Generate</button>
+  <p id="sstatus" class="muted small"></p>
+  <pre id="out"></pre>
+  <button id="copy" hidden>Copy result</button>
+</section>
+
+<section id="progress" hidden>
+  <div id="plist"></div>
+  <button id="clear">Clear progress</button>
+</section>
+
+<section id="settings" hidden>
+  <label>Anthropic API key<input id="key" type="password" placeholder="sk-ant-…" autocomplete="off"></label>
+  <p class="muted small">Stored only in this browser. Study tools call the Anthropic API directly with your key. Get one at console.anthropic.com.</p>
+  <label>Default speed<input id="dspeed" type="number" min="0.25" max="3" step="0.25"></label>
+  <label>Skip length (seconds)<input id="dskip" type="number" min="5" max="60" step="5"></label>
+  <label class="check"><input id="auto" type="checkbox"> Go to the next lesson after a video finishes</label>
+  <button id="save" class="primary">Save settings</button>
+  <p id="saved" class="muted small"></p>
+</section>
+<script src="popup.js"></script>
+</body></html>

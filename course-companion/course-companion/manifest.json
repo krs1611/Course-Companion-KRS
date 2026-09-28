@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Course Companion",
+  "version": "1.0.0",
+  "description": "Speed controls, resume-where-you-left-off, progress tracking, and AI study notes and practice questions for any online video course.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://api.anthropic.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "Course Companion" },
+  "content_scripts": [
+    { "matches": ["<all_urls>"], "js": ["content.js"], "all_frames": true, "run_at": "document_idle" }
+  ],
+  "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" }
+}
